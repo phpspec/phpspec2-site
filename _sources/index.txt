@@ -1,0 +1,336 @@
+Spec BDD with phpspec
+=====================
+
+**phpspec** is a development tool, designed to help you achieve clean and
+working PHP code by using a technique derived from test-first development
+called (spec) behaviour driven developement, or SpecBDD.
+
+The technique consists in describing the next object behaviour you are about
+to implement, using a tool like **phpspec**, then writing just enough code
+that satisfies that specification (spec), then refactoring the last increment.
+This is done in small iterative steps.
+
+Installation
+------------
+
+**phpspec** is a php 5.3 library that you'll use inside your project
+development environment. Before you begin, ensure that you have at least
+PHP 5.3.1 installed.
+
+Method #1 (Composer)
+~~~~~~~~~~~~~~~~~~~~
+
+The simplest way to install phpspec with all its dependencies is through
+Composer:
+
+Create ``composer.json`` file in the project root:
+
+.. code-block:: js
+    
+    {
+        "require-dev": {
+            "phpspec/phpspec2": "*"
+        },
+        "config": {
+            "bin-dir": "bin"
+        },
+        "autoload": {"psr-0": {"": "src"}},
+        "minimum-stability": "dev"
+    }
+
+Then download ``composer.phar`` and run ``install`` command:
+
+.. code-block:: bash
+
+    $ curl http://getcomposer.org/installer | php
+    $ php composer.phar install --dev
+
+Everything will be installed inside ``vendor`` folder and executable will
+be linked into ``bin`` folder.
+
+SpecBDD and TDD
+---------------
+
+There isn't any real difference between SpecBDD and TDD. The value of using
+a xSpec tool instead a regular xUnit tool for TDD is language. The concepts
+and features of the tool will keep you focus on the "right" things. Focus
+on verification and structure as opposed to behaviour and design are, of
+course, valid ones. We happen to find that the later ones are more valuable.
+They were also the intention of early users of TDD.
+
+SpecBDD and StoryBDD
+--------------------
+
+While with StoryBDD tools like [Behat](http://behat.org) are used to
+understand and clarify the domain specifying feature naratives, its need and
+what do we mean by them, with SpecBDD we are only focused on the how, the
+implementation. You are specifying how your classes will achieve those
+features.
+
+A good StoryBDD will let the business talk the domain language and drive the
+development by putting the focus on what really matters first.
+
+Once you know what and why you are adding a feature it's time to write code.
+But not yet! Adding code without a way to validate it serves the specs just
+mean you will have to get back and make it do just that. And the later you
+find out you missed the requirement or added a bug the harder and expensive
+it is to do that. Kent Beck also adds that describing the code before you
+actually write it is a fear management technique. You don't have to write all
+the code, just the spec of the next thing you want to work on. That executable
+spec will then guide you to what code you need to write. Once you did that
+than what you have is a chance to refactor. Because if you change the
+behaviour of your code the specs will go red. So you spec so that you can
+refactor, emerge the design of your code, sustainably. SpecBDD tools are
+designed to guide you in the process.
+
+It's valid to assume that StoryBDD and SpecBDD used together is a very
+effective way to achieve highly customer focused software.
+
+Getting Started
+---------------
+
+Say we are building a tool that converts
+(Markdown)[en.wikipedia.org/wiki/Markdown] into HTML. Well, that's a large
+task. But I work on simple things first and emerge the design to reach all
+the necessary features. Even though I have all the specs from the customer
+(we have done all our Behat feature files), I know I will discover things I
+will need to make sure are there as I sit to write my classes.
+
+What is the simple thing I want to add? It should convert a string line into a
+HTML marked up paragraph, i.e. `"Hi, there"` becomes `"<p>Hi, there</p>"`.
+
+So let's do it. Well, not the boring bits. Let's **phpspec** take care of the
+boring stuff for us. We just need to tell **phpspec** we will be working on
+the `Markdown` class.
+
+.. code-block:: bash
+
+    $ bin/phpspec describe Markdown
+    Specification for Markdown created in spec.
+
+You can also specify a fully qualified class name. Don't forget that if you
+use backslashes you need to pass the class name inside double quotes.
+Alternatively you could use forward slashes and skip the quotes. **phpspec**
+will create the folder structure following PSR standards.
+
+Ok. What have we just done? **phpspec** has created the spec for us. You can
+navigate to the spec folder and see the spec there:
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Markdown extends ObjectBehavior
+    {
+        function it_should_be_initializable()
+        {
+            $this->shouldHaveType('Markdown');
+        }
+    }
+
+That's awesome! **phpspec** created the spec for me. I only need to update
+that first example to match my intention.
+
+.. code-block:: php
+
+    class Markdown extends ObjectBehavior
+    {
+        function it_converts_plain_text_to_html_paragraphs()
+        {
+            $this->toHtml("Hi, there")->shouldReturn("<p>Hi, there</p>");
+        }
+    }
+
+Now what? We run the specs. You may not believe this, but **phpspec** will
+understand we are describing a class that doesn't exist and offer to create
+it!
+
+.. code-block:: bash
+
+    $ bin/phpspec run 
+
+    > spec\Markdown
+
+      ✘ it converts plain text to html paragraphs
+          Class Markdown does not exists.
+
+             Do you want me to create it for you? [Y/n]
+
+**phpspec** will then place the empty class in the directory. You run your
+spec again and... OK, you guessed:
+
+.. code-block:: bash
+
+    $ bin/phpspec run 
+    
+    > spec\Markdown
+    
+      ✘ it converts plain text to html paragraphs
+          Method Markdown::toHtml() not found.
+    
+             Do you want me to create it for you? [Y/n]
+
+What we just did was moving fast through the ambar state into the red.
+
+.. code-block:: php
+
+    <?php
+    
+    class Markdown
+    {
+    
+        public function toHtml()
+        {
+            // TODO: implement
+        }
+    }
+
+We got rid of the fatal errors and ugly messages resulting of unexisting
+classes and methods and went straight into a real failed spec:
+
+.. code-block:: bash
+
+    $ bin/phpspec run 
+    
+    > spec\Markdown
+    
+      ✘ it converts plain text to html paragraphs
+          Expected "<p>Hi, there</p>", but got null.
+    
+    
+    1 examples (1 failed)
+    284ms
+
+According to the TDD rules we know have full permission to write code. Red
+means "time to add code", red is great! Now we add just enough code to make
+the spec green, quickly. There will be time to get it right, but first just
+get it green.
+
+.. code-block:: php
+
+    class Markdown
+    {
+    
+        public function toHtml()
+        {
+            return "<p>Hi, there</p>";
+        }
+    }
+
+And voilà:
+
+.. code-block:: bash
+
+    $ bin/phpspec run 
+    
+    > spec\Markdown
+    
+      ✔ it converts plain text to html paragraphs
+    
+    1 examples (1 passed)
+    247ms
+
+I will leave the explanation of the whole TDD/SpecBDD cycle for a blog posts.
+There are hips of resources out there already. Here are just a couple for you
+to look at:
+
+1. (The Rspec Book)[http://www.amazon.com/RSpec-Book-Behaviour-Development-Cucumber/dp/1934356379]
+   Development with RSpec, Cucumber, and Friends
+   by David Chelimsky, Dave Astels, Zach Dennis, Aslak Hellesøy, Bryan
+   Helmkamp, Dan North
+
+2. (Test Driven Development: By Example)[http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530]
+   Kent Beck
+
+Prophet Objects
+---------------
+
+Stubs
+~~~~~
+
+When you describing your object you want to keep your focus just there in the
+object. You don't want to wander off to start describing collaborators. You
+can very easily tell **phpspec** that there will be collaborators and stub
+their behaviour so you can describe your object message exchange with them.
+
+.. code-block:: php
+
+    namespace spec\Markdown\Formatter;
+
+    use PHPSpec2\Specification;
+
+    class EndOfListFormatter extends ObjectBehavior
+    {
+        /**
+         * @param Markdown\Stream $stream
+         */
+        function it_adds_a_end_of_list_to_markup($stream)
+        {
+            $stream->getNextLine()->willReturn("");
+            $this->format(" * Hi, there", $stream)->shouldReturn("</li></ul>");
+        }
+    }
+
+To stub the behaviour of ``Markdown\Stream::getNextLine()`` we just need to
+pass it to the example, using widely used phpdoc notation, and configuring
+the stub is merely stating what it should return: ``->willReturn("")``.
+
+Mocks
+~~~~~
+
+In addition you will need to make sure a message was sent to an collaborator
+during the normal execution of your methods.
+
+.. code-block:: php
+
+    namespace spec;
+
+    use PHPSpec2\Specification;
+
+    class MyObject extends ObjectBehavior
+    {
+        /**
+         * @param SomeEvent $event
+         * @param SomeSubscriber $subscriber
+         */
+        function it_formats_the_string_as_a_header_if_underline_with_single_dashes($event, $subscriber)
+        {
+            $subscriber->onChange($event)->shouldBeCalled();
+            
+            // when
+            $this->addSubscriber($subcriber);
+            $this->doWhatever($event);
+        }
+    }
+
+Let and Let Go
+--------------
+
+**phpspec** implements the symmetric setup and tear down using the `let` and
+`letgo` methods.
+
+.. code-block:: php
+
+    class EverChangingWorld extends ObjectBehavior
+    {
+        function let($die)
+        {
+            $die->beAMockOf('Die');
+            $this->beConstructedWith($die);
+        }
+        
+        function it_live_and_let_die($die)
+        {
+            $this->liveAndLet()->shouldReturn($die);
+        }
+        
+        function letgo()
+        {
+            // release any resource
+            // put the system back into the state it was before the example
+        }
+    }
