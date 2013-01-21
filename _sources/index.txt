@@ -413,7 +413,7 @@ Well, it's really easy to define your own matcher:
             $this->shouldSupport('html');
         }
 
-        function it_should_not_be_support_json()
+        function it_should_not_support_json()
         {
             $this->shouldNotSupport('json');
         }
