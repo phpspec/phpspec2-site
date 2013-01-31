@@ -334,3 +334,102 @@ Let and Let Go
             // put the system back into the state it was before the example
         }
     }
+
+My implementation should throw an exception
+-------------------------------------------
+
+**phpspec** let you define which exception should be thrown and when.
+
+.. code-block:: php
+
+    class ExceptionThrowerClass extends ObjectBehavior
+    {
+        function its_readFile_should_throw_exception_if_file_does_not_exist()
+        {
+            $this->shouldThrow(new \IOException('file foo.txt doesn\'t exist')->duringReadFile('foo.txt');
+        }
+    }
+
+My method should return true or false
+-------------------------------------
+
+This behaviour can be specified using:
+
+.. code-block:: php
+
+    class MyObject extends ObjectBehavior
+    {
+        function it_should_be_present_in_some_case()
+        {
+            // Define some step to make it present
+
+            $this->isPresent()->shouldReturn(true);
+        }
+
+        function it_should_not_be_present_in_some_case()
+        {
+            // Define some step to make it non present
+
+            $this->isPresent()->shouldReturn(false);
+        }
+    }
+
+**phpspec** offers a more fluent way to do so:
+
+.. code-block:: php
+
+    class MyObject extends ObjectBehavior
+    {
+        function it_should_be_present_in_some_case()
+        {
+            // Define some step to make it present
+
+            $this->shouldBePresent();
+        }
+
+        function it_should_not_be_present_in_some_case()
+        {
+            // Define some step to make it non present
+
+            $this->shouldNotBePresent();
+        }
+    }
+
+It will try to call the method isPresent() (and even offers you to create if it doesn't exist!).
+
+My method should return true or false but doesn't start with the prefix 'is'
+----------------------------------------------------------------------------
+
+In some cases, you would like to use this fluent descriptive way but **phpspec** doesn't support it (yet).
+
+Well, it's really easy to define your own matcher:
+
+.. code-block:: php
+
+    class MyObject extends ObjectBehavior implements CustomMatchersProviderInterface
+    {
+        function it_should_support_html()
+        {
+            $this->shouldSupport('html');
+        }
+
+        function it_should_not_support_json()
+        {
+            $this->shouldNotSupport('json');
+        }
+
+        static public function getMatchers()
+        {
+            return [
+                new InlineMatcher('support', function($subject, $question) {
+                    if (!method_exists($subject, 'supports')) {
+                        throw new MethodNotFoundException(sprintf(
+                            'Method %s not found.', get_class($subject).'::supports()'
+                        ), $subject, 'supports');
+                    }
+
+                    return $subject->supports($question);
+                })
+            ];
+        }
+    }
