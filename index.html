@@ -6,15 +6,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
+
     <title>Spec BDD with phpspec &mdash; phpspec documentation</title>
-    
+
     <link rel="stylesheet" href="_static/scrolls.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/main.css" type="text/css" />
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster" type="text/css" />
     <link rel="stylesheet" href="_static/print.css" type="text/css" />
-    
+
     <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -28,7 +28,7 @@
   })();
 
 </script>
-    
+
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
@@ -37,13 +37,13 @@
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
       };
-      
+
     </script>
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
-    <link rel="top" title="Mink 1.3 documentation" href="#" /> 
+    <link rel="top" title="Mink 1.3 documentation" href="#" />
   </head>
   <body>
     <section class="intro">
@@ -96,13 +96,13 @@
         </nav>
 
         <section class="documentation">
-            
+
   <div class="section" id="spec-bdd-with-phpspec">
 <h1>Spec BDD with phpspec<a class="headerlink" href="#spec-bdd-with-phpspec" title="Permalink to this headline">¶</a></h1>
 <p><strong>phpspec</strong> is a development tool, designed to help you achieve clean and
 working PHP code by using a technique derived from test-first development
-called (spec) behaviour driven developement, or SpecBDD.</p>
-<p>The technique consists of describing the next object behaviour (spec) you are about
+called (spec) behaviour driven development, or SpecBDD.</p>
+<p>The technique consists of describing the behaviour (spec) of the object you are about
 to implement, using a tool like <strong>phpspec</strong>, then writing just enough code
 to quickly satisfy that specification and finally stopping to refactor the last increment,
 allowing the emergent design to guide the direction. This is done in small iterative steps.</p>
@@ -115,7 +115,7 @@ PHP 5.3.1 installed.</p>
 <h3>Method #1 (Composer)<a class="headerlink" href="#method-1-composer" title="Permalink to this headline">¶</a></h3>
 <p>The simplest way to install phpspec with all its dependencies is through
 Composer:</p>
-<p>Create <tt class="docutils literal"><span class="pre">composer.json</span></tt> file in the project root:</p>
+<p>Create a <tt class="docutils literal"><span class="pre">composer.json</span></tt> file in the project root:</p>
 <div class="highlight-js"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;require-dev&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;phpspec/phpspec2&quot;</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span>
@@ -128,29 +128,29 @@ Composer:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Then download <tt class="docutils literal"><span class="pre">composer.phar</span></tt> and run <tt class="docutils literal"><span class="pre">install</span></tt> command:</p>
+<p>Then download <tt class="docutils literal"><span class="pre">composer.phar</span></tt> and run the <tt class="docutils literal"><span class="pre">install</span></tt> command:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>curl http://getcomposer.org/installer | php
 <span class="nv">$ </span>php composer.phar install --dev
 </pre></div>
 </div>
-<p>Everything will be installed inside <tt class="docutils literal"><span class="pre">vendor</span></tt> folder and executable will
-be linked into <tt class="docutils literal"><span class="pre">bin</span></tt> folder.</p>
+<p>Everything will be installed inside the <tt class="docutils literal"><span class="pre">vendor</span></tt> folder and the executable will
+be linked into the <tt class="docutils literal"><span class="pre">bin</span></tt> folder.</p>
 </div>
 </div>
 <div class="section" id="specbdd-and-tdd">
 <h2>SpecBDD and TDD<a class="headerlink" href="#specbdd-and-tdd" title="Permalink to this headline">¶</a></h2>
 <p>There isn&#8217;t any real difference between SpecBDD and TDD. The value of using
-a xSpec tool instead a regular xUnit tool for TDD is language. The concepts
+an xSpec tool instead a regular xUnit tool for TDD is language. The concepts
 and features of the tool will keep your focus on the &#8220;right&#8221; things. The focus
 on verification and structure as opposed to behaviour and design is, of
-course, a valid one. We happen to find that the latter is more valuable on the
+course, a valid one. We happen to find that the latter is more valuable in the
 long run. It was also the intention of early users of TDD.</p>
 </div>
 <div class="section" id="specbdd-and-storybdd">
 <h2>SpecBDD and StoryBDD<a class="headerlink" href="#specbdd-and-storybdd" title="Permalink to this headline">¶</a></h2>
-<p>While with StoryBDD tools like <a class="reference external" href="http://behat.org">Behat</a> are used to
-understand and clarify the domain &mdash; specifying feature narratives, its need, and
-what do we mean by them &mdash; with SpecBDD we are only focused on the how: the
+<p>Whilst StoryBDD tools like <a class="reference external" href="http://behat.org">Behat</a> are used to
+understand and clarify the domain &mdash; specifying feature narratives, its needs, and
+what we mean by them &mdash; with SpecBDD we are only focused on the how: the
 implementation. You are specifying how your classes will achieve those
 features.</p>
 <p>A good StoryBDD tool will let the business talk the domain language and drive the
@@ -166,7 +166,7 @@ spec will then guide you to what code you need to write. Once you do that,
 then what you have is a chance to refactor. Because if you change the
 behaviour of your code the specs will go red. So you spec so that you can
 refactor, or allow the design of your code to emerge in a sustainable way. SpecBDD tools are
-designed to guide you in the process, or at least not stand on the way.</p>
+designed to guide you in the process, or at least not stand in the way.</p>
 <p>It&#8217;s valid to assume that StoryBDD and SpecBDD used together are a very
 effective way to achieve highly customer-focused software.</p>
 </div>
@@ -230,11 +230,11 @@ than <tt class="docutils literal"><span class="pre">someLongCamelCasingLikeThat<
 <div class="section" id="matchers">
 <h3>Matchers<a class="headerlink" href="#matchers" title="Permalink to this headline">¶</a></h3>
 
-<p>Matchers are much like assertions in xUnit, except the fact that matchers
-concentrate on telling how the object <strong>should</strong> behave instead of verifying how
-it works. It just expresses better the focus on behaviour and fits better in the test-first cycle.
-There are 5 matchers in <strong>phpspec</strong> currently, but almost each
-one of them has aliases to make your examples read more fluid:</p>
+<p>Matchers are much like assertions in xUnit, except for the fact that matchers
+concentrate on saying how the object <strong>should</strong> behave instead of verifying how
+it works. It just better expresses the focus on behaviour and better fits into the test-first cycle.
+There are 5 matchers in <strong>phpspec</strong> currently, but almost every
+one of them have aliases to make your examples read more fluidly:</p>
 
 </div>
 
@@ -242,12 +242,12 @@ one of them has aliases to make your examples read more fluid:</p>
 <li>Identity (return, be, equal, beEqualTo) - it&#8217;s like checking <tt class="docutils literal"><span class="pre">===</span></tt></li>
 <li>Comparison (beLike) - it&#8217;s like checking <tt class="docutils literal"><span class="pre">==</span></tt></li>
 <li>Throw (throw -&gt; during) - for testing exceptions</li>
-<li>Type (beAnInstanceOf, returnAnInstanceOf, haveType) - checks object type</li>
-<li>ObjectState (have**) - checks object <tt class="docutils literal"><span class="pre">is**</span></tt> method return value</li>
+<li>Type (beAnInstanceOf, returnAnInstanceOf, haveType) - for checking object types</li>
+<li>ObjectState (have**) - for checking object <tt class="docutils literal"><span class="pre">is**</span></tt> method return values</li>
 <li>Count (haveCount) - checks number of items in an array (works also with \Countable object)</li>
 </ul>
-<p>How do you use those? You&#8217;re just prefixing them with <tt class="docutils literal"><span class="pre">should</span></tt> or <tt class="docutils literal"><span class="pre">shouldNot</span></tt>
-depending on what you expect and call them on subject of interest.</p>
+<p>How do you use those? You just prefix them with <tt class="docutils literal"><span class="pre">should</span></tt> or <tt class="docutils literal"><span class="pre">shouldNot</span></tt>
+depending on what you expect and then call them on the subject of interest.</p>
 
 <p>Now we are ready to move on. Let&#8217;s update that first example to express my next intention:</p>
 
@@ -298,7 +298,7 @@ spec again and... OK, you guessed:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>We got rid of the fatal errors and ugly messages that resulted from nonnexistent
+<p>We got rid of the fatal errors and ugly messages that resulted from non-existent
 classes and methods and went straight into a real failed spec:</p>
 <div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ </span>bin/phpspec run
 
@@ -353,7 +353,7 @@ Kent Beck</li>
 
 <div class="section" id="stubs">
 <h3>Stubs<a class="headerlink" href="#stubs" title="Permalink to this headline">¶</a></h3>
-<p>When you describing an object, you want your focus to be just there, in the
+<p>When you are describing an object, you want your focus to be just there, in the
 object. You don&#8217;t want to wander off to start describing collaborators. You
 can very easily tell <strong>phpspec</strong> that there will be collaborators and stub
 their behaviour so you can describe your object message exchange with them.</p>
@@ -375,13 +375,13 @@ their behaviour so you can describe your object message exchange with them.</p>
 </pre></div>
 </div>
 <p>To stub the behaviour of <tt class="docutils literal"><span class="pre">Markdown\Stream::getNextLine()</span></tt> we just need to
-pass it to the example, using widely used phpdoc notation, and configuring
+pass it to the example, using the widely used phpdoc notation, then configuring
 the stub is merely stating what it should return: <tt class="docutils literal"><span class="pre">-&gt;willReturn(&quot;&quot;)</span></tt>.</p>
 </div>
 <div class="section" id="mocks">
 <h3>Mocks<a class="headerlink" href="#mocks" title="Permalink to this headline">¶</a></h3>
-<p>In addition you will need to verify a message was sent to a collaborator
-during the normal execution of a method. You can specify a mock expectation with <tt class="docutils literal"><span class="pre">-&gt;shouldBeCalled()</span></tt></p>
+<p>In addition if you need to verify a message was sent to a collaborator
+during the normal execution of a method, then you can specify a mock expectation with <tt class="docutils literal"><span class="pre">-&gt;shouldBeCalled()</span></tt></p>
 <div class="highlight-php"><div class="highlight"><pre><span class="k">namespace</span> <span class="nx">spec</span><span class="p">;</span>
 
 <span class="k">use</span> <span class="nx">PHPSpec2\Specification</span><span class="p">;</span>
