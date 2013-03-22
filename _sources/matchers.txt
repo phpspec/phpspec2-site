@@ -1,0 +1,248 @@
+Matchers
+========
+
+Matchers are much like assertions in xUnit, except the fact that matchers concentrate on telling how the object should behave instead of verifying how it works. It just expresses better the focus on behaviour and fits better in the test-first cycle. There are 5 matchers in phpspec currently, but almost each one of them has aliases to make your examples read more fluid.
+
+Identity Matcher
+------------
+
+Identity matcher asserts that method a return a specific value. It's pretty much like using `===`. 
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_be_a_movie_a_great_movie()
+        {
+            $this->getRating()->shouldBe(5);
+            $this->getTitle()->shouldBeEqualTo("Star Wars");
+            $this->getReleaseDate()->shouldReturn(233366400);
+        }
+    }
+
+In order to make our tests more readable PHPSpec allows us to use four different variations of the Identity matcher, namely, `shouldReturn`, `shouldBeEqualTo`, `shouldReturn` and `shouldBe`. It's worth pointint out that there is no difference in using one over other, the final result will be the same in all the scenearios.
+
+Comparison Matcher
+------------------
+
+Comparison matcher asserts that a method return a specific value but it's not as strict as the identity matcher. It's pretty much like using `==`.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_be_a_movie_a_great_movie()
+        {
+            $this->getRating()->shouldBeLike("5");
+        }
+    }
+
+We have change the assertion before. Now, it doesn't matter whether `StarWars::rating` returns an integer or a string, the test will pass anyways.
+
+Throw Matcher
+-------------
+
+Throw matcher asserts that a method throws an exception. The usage of this matcher is a little bit more involved but it makes reading the code more natural.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_not_allow_negative_ratings()
+        {
+            $this->shouldThrow("\InvalidArgumentException")->duringSetRating(-3);
+        }
+    }
+
+The code above could also be written as follows.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_not_allow_negative_ratings()
+        {
+            $this->shouldThrow("\InvalidArgumentException")->during("setRating", array(-3));
+        }
+    }
+
+where the first argument of `during` is a callable and the second one is an array of values passed to this callable.
+
+Type Matcher
+------------
+
+Type matcher asserts the object being tested is of a specific type. Unlike other matchers, this matcher doesn't need to call a method before.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_be_a_movie()
+        {
+            $this->shouldHaveType('Movie');
+            $this->shouldReturnAnInstanceOf('Movie');
+            $this->shouldBeAnInstanceOf('Movie');
+            $this->shouldImplement('Movie');
+        }
+    }
+
+All four assertions before are equivalent and will assert whether the object is a `Movie` or not.
+
+ObjectState Matcher
+-------------------
+
+ObjectState matcher asserts the status of a object. It checks `is**` and `has**` methods return value.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_be_available_on_cinemas()
+        {
+            $this->shouldBeAvailableOnCinemas();
+        }
+
+        function it_should_have_soundtrack()
+        {
+            $this->shouldHaveSoundtrack();
+        }
+    }
+
+In order to make our tests pass the implementation of the `Movie` object should look something like this.
+
+.. code-block:: php
+
+    <?php
+
+    class Movie 
+    {
+        public function isAvailableOnCinemas()
+        {
+            return true;
+        }
+
+        public function hasSoundtrack()
+        {
+            return true;
+        }
+    }
+
+
+Count Matcher
+-------------
+
+Count matcher asserts the number of items returned by a method. This return could be either an array or an object that implements the `\Countable` interface.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_have_one_director()
+        {
+            $this->getDirectors()->shouldHaveCount(1);
+        }
+    }
+
+
+Scalar Matcher
+--------------
+
+Scalar matcher asserts the value returned by a method is of a specific primitive type. It's pretty much like using the `is_**` function family, e.g, `is_bool`, `is_integer`, `is_decimal`, etc ..
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_have_a_string_as_title()
+        {
+            $this->getTitle()->shouldBeString();
+        }
+
+        function it_should_have_an_array_as_cast()
+        {
+            $this->getCast()->shouldBeArray();
+        }
+    }
+
+Inline Matcher
+-------------
+
+There will be sometimes when you need to assert something and none of the matchers below will look like the right tool. In those cases you can create your own matchers thanks to the inline matchers.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+    use PHPSpec2\Matcher\InlineMatcher;
+    use PHPSpec2\Matcher\CustomMatchersProviderInterface;
+
+    class Movie extends ObjectBehavior extends CustomMatchersProviderInterface
+    {
+    function it_should_have_some_specific_options_by_default()
+    {
+        $this->getOptions()->shouldHaveKey('username');
+        $this->getOptions()->shouldHaveValue('diegoholiveira');
+    }
+
+    static public function getMatchers()
+    {
+        return [
+            new InlineMatcher('haveKey', function($subject, $key) {
+                return array_key_exists($key, $subject);
+            }),
+            new InlineMatcher('haveValue', function($subject, $value) {
+                return in_array($value, $subject);
+            }),
+        ];
+    }
