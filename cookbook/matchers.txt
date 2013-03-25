@@ -1,12 +1,17 @@
 Matchers
 ========
 
-Matchers are much like assertions in xUnit, except the fact that matchers concentrate on telling how the object should behave instead of verifying how it works. It just expresses better the focus on behaviour and fits better in the test-first cycle. There are 5 matchers in phpspec currently, but almost each one of them has aliases to make your examples read more fluid.
+Matchers are much like assertions in xUnit, except the fact that matchers
+concentrate on telling how the object should behave instead of verifying how it
+works. It just expresses better the focus on behaviour and fits better in the
+test-first cycle. There are 5 matchers in phpspec currently, but almost each
+one of them has aliases to make your examples read more fluid.
 
 Identity Matcher
 ----------------
 
-Identity matcher asserts that method a return a specific value. It's pretty much like using `===`. 
+Identity matcher asserts that method a return a specific value. It's pretty much
+like using ``===``.
 
 .. code-block:: php
 
@@ -18,7 +23,7 @@ Identity matcher asserts that method a return a specific value. It's pretty much
 
     class Movie extends ObjectBehavior
     {
-        function it_should_be_a_movie_a_great_movie()
+        function it_should_be_a_great_movie()
         {
             $this->getRating()->shouldBe(5);
             $this->getTitle()->shouldBeEqualTo("Star Wars");
@@ -26,12 +31,17 @@ Identity matcher asserts that method a return a specific value. It's pretty much
         }
     }
 
-In order to make our tests more readable PHPSpec allows us to use four different variations of the Identity matcher, namely, `shouldReturn`, `shouldBeEqualTo`, `shouldReturn` and `shouldBe`. It's worth pointint out that there is no difference in using one over other, the final result will be the same in all the scenearios.
+In order to make our specs more readable phpspec allows us to use four different
+variations of the Identity matcher, namely, ``shouldReturn``, ``shouldBeEqualTo``,
+``shouldReturn`` and ``shouldBe``. It's worth pointing out that there is no difference
+in using one over other from a technical perspective. The final result will be the
+same in each case, except that readability of specs might differ.
 
 Comparison Matcher
 ------------------
 
-Comparison matcher asserts that a method return a specific value but it's not as strict as the identity matcher. It's pretty much like using `==`.
+Comparison matcher verifies that a method returns a specific value but it's not
+as strict as the identity matcher. It's pretty much like using ``==``.
 
 .. code-block:: php
 
@@ -43,18 +53,21 @@ Comparison matcher asserts that a method return a specific value but it's not as
 
     class Movie extends ObjectBehavior
     {
-        function it_should_be_a_movie_a_great_movie()
+        function it_should_be_a_great_movie()
         {
-            $this->getRating()->shouldBeLike("5");
+            $this->getRating()->shouldBeLike('5');
         }
     }
 
-We have change the assertion before. Now, it doesn't matter whether `StarWars::rating` returns an integer or a string, the test will pass anyways.
+We have changed the assertion from the previous example. Now, it doesn't matter
+whether ``StarWars::rating`` returns an integer or a string, the spec will pass
+either way.
 
 Throw Matcher
 -------------
 
-Throw matcher asserts that a method throws an exception. The usage of this matcher is a little bit more involved but it makes reading the code more natural.
+Throw matcher asserts that a method throws an exception. The usage of this
+matcher is a little bit more involved but it makes reading the code more natural.
 
 .. code-block:: php
 
@@ -68,11 +81,11 @@ Throw matcher asserts that a method throws an exception. The usage of this match
     {
         function it_should_not_allow_negative_ratings()
         {
-            $this->shouldThrow("\InvalidArgumentException")->duringSetRating(-3);
+            $this->shouldThrow('\InvalidArgumentException')->duringSetRating(-3);
         }
     }
 
-The code above could also be written as follows.
+The code above could also be written as follows:
 
 .. code-block:: php
 
@@ -86,16 +99,17 @@ The code above could also be written as follows.
     {
         function it_should_not_allow_negative_ratings()
         {
-            $this->shouldThrow("\InvalidArgumentException")->during("setRating", array(-3));
+            $this->shouldThrow('\InvalidArgumentException')->during('setRating', array(-3));
         }
     }
 
-where the first argument of `during` is a callable and the second one is an array of values passed to this callable.
+The first argument of ``during`` is a method name and the second one is
+an array of values passed to the method.
 
 Type Matcher
 ------------
 
-Type matcher asserts the object being tested is of a specific type. Unlike other matchers, this matcher doesn't need to call a method before.
+Type matcher asserts the object being tested is of a specific type.
 
 .. code-block:: php
 
@@ -116,12 +130,14 @@ Type matcher asserts the object being tested is of a specific type. Unlike other
         }
     }
 
-All four assertions before are equivalent and will assert whether the object is a `Movie` or not.
+All four matcher methods are equivalent and will verify if the object is
+a ``Movie`` or not.
 
 ObjectState Matcher
 -------------------
 
-ObjectState matcher asserts the status of a object. It checks `is**` and `has**` methods return value.
+ObjectState matcher verifies the state of an object. It checks ``is*`` and
+``has*`` methods' return values.
 
 .. code-block:: php
 
@@ -144,7 +160,8 @@ ObjectState matcher asserts the status of a object. It checks `is**` and `has**`
         }
     }
 
-In order to make our tests pass the implementation of the `Movie` object should look something like this.
+In order to make our specs pass the implementation of the ``Movie`` class should
+provide ``isAvailableOnCinemas`` and ``hasSoundtrack`` methods:
 
 .. code-block:: php
 
@@ -167,7 +184,9 @@ In order to make our tests pass the implementation of the `Movie` object should 
 Count Matcher
 -------------
 
-Count matcher asserts the number of items returned by a method. This return could be either an array or an object that implements the `\Countable` interface.
+Count matcher asserts the number of items returned by a method. This return
+could be either an array or an object that implements the ``\Countable``
+interface.
 
 .. code-block:: php
 
@@ -189,7 +208,9 @@ Count matcher asserts the number of items returned by a method. This return coul
 Scalar Matcher
 --------------
 
-Scalar matcher asserts the value returned by a method is of a specific primitive type. It's pretty much like using the `is_**` function family, e.g, `is_bool`, `is_integer`, `is_decimal`, etc ..
+Scalar matcher asserts the value returned by a method is of a specific primitive
+type. It's pretty much like using the ``is_*`` function family, e.g, ``is_bool``,
+``is_integer``, ``is_decimal``, etc ..
 
 .. code-block:: php
 
@@ -215,7 +236,8 @@ Scalar matcher asserts the value returned by a method is of a specific primitive
 Inline Matcher
 --------------
 
-There will be sometimes when you need to assert something and none of the matchers below will look like the right tool. In those cases you can create your own matchers thanks to the inline matchers.
+Inline matchers can be used to provide custom verification methods,
+not available in phpspec or specific to your project.
 
 .. code-block:: php
 
