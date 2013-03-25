@@ -4,7 +4,7 @@ Matchers
 Matchers are much like assertions in xUnit, except the fact that matchers concentrate on telling how the object should behave instead of verifying how it works. It just expresses better the focus on behaviour and fits better in the test-first cycle. There are 5 matchers in phpspec currently, but almost each one of them has aliases to make your examples read more fluid.
 
 Identity Matcher
-------------
+----------------
 
 Identity matcher asserts that method a return a specific value. It's pretty much like using `===`. 
 
@@ -213,7 +213,7 @@ Scalar matcher asserts the value returned by a method is of a specific primitive
     }
 
 Inline Matcher
--------------
+--------------
 
 There will be sometimes when you need to assert something and none of the matchers below will look like the right tool. In those cases you can create your own matchers thanks to the inline matchers.
 
@@ -229,20 +229,21 @@ There will be sometimes when you need to assert something and none of the matche
 
     class Movie extends ObjectBehavior extends CustomMatchersProviderInterface
     {
-    function it_should_have_some_specific_options_by_default()
-    {
-        $this->getOptions()->shouldHaveKey('username');
-        $this->getOptions()->shouldHaveValue('diegoholiveira');
-    }
+        function it_should_have_some_specific_options_by_default()
+        {
+            $this->getOptions()->shouldHaveKey('username');
+            $this->getOptions()->shouldHaveValue('diegoholiveira');
+        }
 
-    static public function getMatchers()
-    {
-        return [
-            new InlineMatcher('haveKey', function($subject, $key) {
-                return array_key_exists($key, $subject);
-            }),
-            new InlineMatcher('haveValue', function($subject, $value) {
-                return in_array($value, $subject);
-            }),
-        ];
+        static public function getMatchers()
+        {
+            return [
+                new InlineMatcher('haveKey', function($subject, $key) {
+                    return array_key_exists($key, $subject);
+                }),
+                new InlineMatcher('haveValue', function($subject, $value) {
+                    return in_array($value, $subject);
+                }),
+            ];
+        }
     }

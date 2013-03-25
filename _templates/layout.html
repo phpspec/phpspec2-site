@@ -1,0 +1,83 @@
+{% extends "!layout.html" %}
+
+{% set css_files = css_files + ['_static/scrolls.css', '_static/pygments.css', '_static/main.css', 'http://fonts.googleapis.com/css?family=Lobster', '_static/print.css'] %}
+
+{% block extrahead %}
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-34229660-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+         })();
+
+    </script>
+{% endblock %}
+
+{% block content %}
+    <section class="intro">
+        <a id="logo" href="http://phpspec.net">phpspec</a>
+
+        <div class="intro">
+            <h1>
+                A <span>php</span> toolset to drive emergent<br/>
+                design by <span>specification</span>.
+            </h1>
+        </div>
+
+        <div class="preview">
+            <a href="http://github.com/phpspec/phpspec2" class="docs repo">
+                phpspec2<br>repository
+            </a>
+            <a href="#manual" class="docs manual">
+                phpspec2<br>manual
+            </a>
+            <div style="clear:both"></div>
+        </div>
+    </section>
+
+    <section class="docs" id="manual">
+
+        <nav class="toc">
+            <h3>Chapters</h3>
+            {{ toc }}
+        </nav>
+
+        <section class="documentation">
+            {% block body %}{% endblock %}
+        </section>
+
+        {#% if pagename != 'index' %}
+            <footer>
+                <nav>
+                    {%- if prev %}
+                        &laquo; <a href="{{ prev.link|e }}">{{ prev.title }}</a> |
+                    {%- endif %}
+                        {{ title }}
+                    {%- if next %}
+                        | <a href="{{ next.link|e }}">{{ next.title }}</a> &raquo;
+                    {%- endif %}
+                </nav>
+            </footer>
+        {% endif %#}
+
+    </section>
+
+    <footer>
+        <dl>
+            <dt>Resources</dt>
+            <dd><a href="http://behat.org">Behat</a></dd>
+        </dl>
+        <dl>
+            <dt>GitHub</dt>
+            <dd><a href="https://github.com/phpspec/phpspec2">phpspec2</a></dd>
+        </dl>
+
+        <div class="clear"></div>
+    </footer>
+{% endblock %}
+
+{% block footer %}{% endblock %}
