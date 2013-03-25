@@ -172,6 +172,8 @@ Now we are ready to move on. Let's update that first example to express my next 
 
 .. code-block:: php
 
+    <?php
+
     class Markdown extends ObjectBehavior
     {
         function it_converts_plain_text_to_html_paragraphs()
@@ -247,6 +249,8 @@ get it green.
 
 .. code-block:: php
 
+    <?php
+
     class Markdown
     {
     
@@ -294,6 +298,8 @@ their behaviour so you can describe your object message exchange with them.
 
 .. code-block:: php
 
+    <?php
+
     namespace spec\Markdown\Formatter;
 
     use PHPSpec2\Specification;
@@ -322,6 +328,8 @@ during the normal execution of a method. You can specify a mock expectation with
 
 .. code-block:: php
 
+    <?php
+
     namespace spec;
 
     use PHPSpec2\Specification;
@@ -349,6 +357,8 @@ Let and Let Go
 `letgo` methods.
 
 .. code-block:: php
+
+    <?php
 
     class EverChangingWorld extends ObjectBehavior
     {
