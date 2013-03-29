@@ -10,8 +10,8 @@ one of them has aliases to make your examples read more fluid.
 Identity Matcher
 ----------------
 
-Identity matcher asserts that method a return a specific value. It's pretty much
-like using ``===``.
+Identity matcher is used to describe that method should return a specific value.
+It compare the result using the identity operator: ``===``.
 
 .. code-block:: php
 
@@ -37,11 +37,14 @@ variations of the Identity matcher, namely, ``shouldReturn``, ``shouldBeEqualTo`
 in using one over other from a technical perspective. The final result will be the
 same in each case, except that readability of specs might differ.
 
+
 Comparison Matcher
 ------------------
 
-Comparison matcher verifies that a method returns a specific value but it's not
-as strict as the identity matcher. It's pretty much like using ``==``.
+Use Comparison matcher to specify that a method should return a specific value
+but it's not as strict as the identity matcher. It's pretty much like comparing
+the result using the comparison operator ``==``, following PHP rules for loosely
+type comparison.
 
 .. code-block:: php
 
@@ -63,11 +66,13 @@ We have changed the assertion from the previous example. Now, it doesn't matter
 whether ``StarWars::rating`` returns an integer or a string, the spec will pass
 either way.
 
+
 Throw Matcher
 -------------
 
-Throw matcher asserts that a method throws an exception. The usage of this
-matcher is a little bit more involved but it makes reading the code more natural.
+Throw matcher should be used to describe cases in which a method throws an
+exception. The usage of this matcher is a little bit different, as we call
+the matcher straight from ``$this``, which makes reading the example more natural.
 
 .. code-block:: php
 
@@ -106,10 +111,30 @@ The code above could also be written as follows:
 The first argument of ``during`` is a method name and the second one is
 an array of values passed to the method.
 
+You may want to specify the message of the exception. Another possible way to
+use the Throw matcher is by passing an exception object to shouldThrow:
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PHPSpec2\ObjectBehavior;
+
+    class Movie extends ObjectBehavior
+    {
+        function it_should_not_allow_negative_ratings()
+        {
+            $this->shouldThrow(new \InvalidArgumentException("Invalid rating"))->during('setRating', array(-3));
+        }
+    }
+
+
 Type Matcher
 ------------
 
-Type matcher asserts the object being tested is of a specific type.
+Type matcher looks into the type of object being described.
 
 .. code-block:: php
 
@@ -130,14 +155,16 @@ Type matcher asserts the object being tested is of a specific type.
         }
     }
 
-All four matcher methods are equivalent and will verify if the object is
-a ``Movie`` or not.
+All four matcher methods are equivalent and will serve to describe if the object
+is a ``Movie`` or not.
+
 
 ObjectState Matcher
 -------------------
 
-ObjectState matcher verifies the state of an object. It checks ``is*`` and
-``has*`` methods' return values.
+ObjectState matcher is used to check some common state validation methods,
+typically started with ``is*`` and ``has*``. Similar to what you'd see in
+``rspec`` predicate matcher.
 
 .. code-block:: php
 
@@ -160,7 +187,7 @@ ObjectState matcher verifies the state of an object. It checks ``is*`` and
         }
     }
 
-In order to make our specs pass the implementation of the ``Movie`` class should
+In order to make our specs green the implementation of the ``Movie`` should
 provide ``isAvailableOnCinemas`` and ``hasSoundtrack`` methods:
 
 .. code-block:: php
@@ -184,8 +211,8 @@ provide ``isAvailableOnCinemas`` and ``hasSoundtrack`` methods:
 Count Matcher
 -------------
 
-Count matcher asserts the number of items returned by a method. This return
-could be either an array or an object that implements the ``\Countable``
+Use Count matcher to specify the number of items that should be returned by a method.
+This return could be either an array or an object that implements the ``\Countable``
 interface.
 
 .. code-block:: php
@@ -208,9 +235,9 @@ interface.
 Scalar Matcher
 --------------
 
-Scalar matcher asserts the value returned by a method is of a specific primitive
-type. It's pretty much like using the ``is_*`` function family, e.g, ``is_bool``,
-``is_integer``, ``is_decimal``, etc ..
+Use Scalar matcher to specify that value returned by a method should be of a
+specific primitive type. It's pretty much like using the ``is_*`` function family,
+e.g, ``is_bool``, ``is_integer``, ``is_decimal``, etc ..
 
 .. code-block:: php
 
@@ -236,8 +263,8 @@ type. It's pretty much like using the ``is_*`` function family, e.g, ``is_bool``
 Inline Matcher
 --------------
 
-Inline matchers can be used to provide custom verification methods,
-not available in phpspec or specific to your project.
+Inline matchers can be used to provide custom expectations not available in phpspec
+native matcher, more or specific to your project or domain.
 
 .. code-block:: php
 
