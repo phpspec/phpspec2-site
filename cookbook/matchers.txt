@@ -31,11 +31,11 @@ It compare the result using the identity operator: ``===``.
         }
     }
 
-In order to make our specs more readable phpspec allows us to use four different
-variations of the Identity matcher, namely, ``shouldReturn``, ``shouldBeEqualTo``,
-``shouldReturn`` and ``shouldBe``. It's worth pointing out that there is no difference
-in using one over other from a technical perspective. The final result will be the
-same in each case, except that readability of specs might differ.
+In order to make our specs more readable phpspec allows us to use three different
+variations of the Identity matcher, namely, ``shouldReturn``, ``shouldBeEqualTo``
+and ``shouldBe``. It's worth pointing out that there is no difference in using one 
+over other from a technical perspective. The final result will be the same in each 
+case, except that readability of specs might differ.
 
 
 Comparison Matcher
