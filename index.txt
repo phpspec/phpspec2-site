@@ -29,7 +29,7 @@ Create ``composer.json`` file in the project root:
     
     {
         "require-dev": {
-            "phpspec/phpspec2": "*"
+            "phpspec/phpspec": "*"
         },
         "config": {
             "bin-dir": "bin"
@@ -122,7 +122,7 @@ navigate to the spec folder and see the spec there:
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Markdown extends ObjectBehavior
     {
@@ -302,7 +302,7 @@ their behaviour so you can describe your object message exchange with them.
 
     namespace spec\Markdown\Formatter;
 
-    use PHPSpec2\Specification;
+    use PhpSpec\Specification;
 
     class EndOfListFormatter extends ObjectBehavior
     {
@@ -332,7 +332,7 @@ during the normal execution of a method. You can specify a mock expectation with
 
     namespace spec;
 
-    use PHPSpec2\Specification;
+    use PhpSpec\Specification;
 
     class MyObject extends ObjectBehavior
     {
