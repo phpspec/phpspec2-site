@@ -19,7 +19,7 @@ It compare the result using the identity operator: ``===``.
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -52,7 +52,7 @@ type comparison.
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -80,7 +80,7 @@ the matcher straight from ``$this``, which makes reading the example more natura
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -98,7 +98,7 @@ The code above could also be written as follows:
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -120,7 +120,7 @@ use the Throw matcher is by passing an exception object to shouldThrow:
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -142,7 +142,7 @@ Type matcher looks into the type of object being described.
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -172,7 +172,7 @@ typically started with ``is*`` and ``has*``. Similar to what you'd see in
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -221,7 +221,7 @@ interface.
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -245,7 +245,7 @@ e.g, ``is_bool``, ``is_integer``, ``is_decimal``, etc ..
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
+    use PhpSpec\ObjectBehavior;
 
     class Movie extends ObjectBehavior
     {
@@ -272,9 +272,9 @@ native matcher, more or specific to your project or domain.
 
     namespace spec;
 
-    use PHPSpec2\ObjectBehavior;
-    use PHPSpec2\Matcher\InlineMatcher;
-    use PHPSpec2\Matcher\CustomMatchersProviderInterface;
+    use PhpSpec\ObjectBehavior;
+    use PhpSpec\Matcher\InlineMatcher;
+    use PhpSpec\Matcher\CustomMatchersProviderInterface;
 
     class Movie extends ObjectBehavior extends CustomMatchersProviderInterface
     {

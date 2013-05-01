@@ -57,11 +57,11 @@
         </div>
 
         <div class="preview">
-            <a href="http://github.com/phpspec/phpspec2" class="docs repo">
-                phpspec2<br>repository
+            <a href="http://github.com/phpspec/phpspec" class="docs repo">
+                phpspec<br>repository
             </a>
             <a href="#manual" class="docs manual">
-                phpspec2<br>manual
+                phpspec<br>manual
             </a>
             <div style="clear:both"></div>
         </div>
@@ -118,7 +118,7 @@ Composer:</p>
 <p>Create <tt class="docutils literal"><span class="pre">composer.json</span></tt> file in the project root:</p>
 <div class="highlight-js"><div class="highlight"><pre><span class="p">{</span>
     <span class="s2">&quot;require-dev&quot;</span><span class="o">:</span> <span class="p">{</span>
-        <span class="s2">&quot;phpspec/phpspec2&quot;</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span>
+        <span class="s2">&quot;phpspec/phpspec&quot;</span><span class="o">:</span> <span class="s2">&quot;*&quot;</span>
     <span class="p">},</span>
     <span class="s2">&quot;config&quot;</span><span class="o">:</span> <span class="p">{</span>
         <span class="s2">&quot;bin-dir&quot;</span><span class="o">:</span> <span class="s2">&quot;bin&quot;</span>
@@ -197,7 +197,7 @@ navigate to the spec folder and see the spec there:</p>
 
 <span class="k">namespace</span> <span class="nx">spec</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">PHPSpec2\ObjectBehavior</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">PhpSpec\ObjectBehavior</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Markdown</span> <span class="k">extends</span> <span class="nx">ObjectBehavior</span>
 <span class="p">{</span>
@@ -359,7 +359,7 @@ can very easily tell <strong>phpspec</strong> that there will be collaborators a
 their behaviour so you can describe your object message exchange with them.</p>
 <div class="highlight-php"><div class="highlight"><pre><span class="k">namespace</span> <span class="nx">spec\Markdown\Formatter</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">PHPSpec2\Specification</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">PhpSpec\Specification</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">EndOfListFormatter</span> <span class="k">extends</span> <span class="nx">ObjectBehavior</span>
 <span class="p">{</span>
@@ -384,7 +384,7 @@ the stub is merely stating what it should return: <tt class="docutils literal"><
 during the normal execution of a method. You can specify a mock expectation with <tt class="docutils literal"><span class="pre">-&gt;shouldBeCalled()</span></tt></p>
 <div class="highlight-php"><div class="highlight"><pre><span class="k">namespace</span> <span class="nx">spec</span><span class="p">;</span>
 
-<span class="k">use</span> <span class="nx">PHPSpec2\Specification</span><span class="p">;</span>
+<span class="k">use</span> <span class="nx">PhpSpec\Specification</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">MyObject</span> <span class="k">extends</span> <span class="nx">ObjectBehavior</span>
 <span class="p">{</span>
@@ -445,7 +445,7 @@ during the normal execution of a method. You can specify a mock expectation with
         </dl>
         <dl>
             <dt>GitHub</dt>
-            <dd><a href="https://github.com/phpspec/phpspec2">phpspec2</a></dd>
+            <dd><a href="https://github.com/phpspec/phpspec">phpspec</a></dd>
         </dl>
 
         <div class="clear"></div>

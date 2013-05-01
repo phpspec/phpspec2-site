@@ -1,4 +1,4 @@
-phpspec2-site
+phpspec-site
 =============
 
 phpspec.net source code
