@@ -283,7 +283,7 @@ native matcher, more or specific to your project or domain.
             $this->getOptions()->shouldHaveValue('diegoholiveira');
         }
 
-        static public function getMatchers()
+        public function getMatchers()
         {
             return [
                 'haveKey' => function($subject, $key) {
