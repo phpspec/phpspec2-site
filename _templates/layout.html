@@ -1,5 +1,9 @@
 {% extends "!layout.html" %}
 
+{%- block doctype -%}
+<!DOCTYPE html>
+{%- endblock -%}
+
 {% set css_files = css_files + ['_static/scrolls.css', '_static/pygments.css', '_static/main.css', 'http://fonts.googleapis.com/css?family=Lobster', '_static/print.css'] %}
 
 {% block extrahead %}
