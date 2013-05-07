@@ -276,7 +276,7 @@ native matcher, more or specific to your project or domain.
     use PhpSpec\Matcher\InlineMatcher;
     use PhpSpec\Matcher\CustomMatchersProviderInterface;
 
-    class Movie extends ObjectBehavior extends CustomMatchersProviderInterface
+    class Movie extends ObjectBehavior implements CustomMatchersProviderInterface
     {
         function it_should_have_some_specific_options_by_default()
         {
