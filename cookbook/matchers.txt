@@ -274,9 +274,8 @@ native matcher, more or specific to your project or domain.
 
     use PhpSpec\ObjectBehavior;
     use PhpSpec\Matcher\InlineMatcher;
-    use PhpSpec\Matcher\CustomMatchersProviderInterface;
 
-    class Movie extends ObjectBehavior implements CustomMatchersProviderInterface
+    class Movie extends ObjectBehavior
     {
         function it_should_have_some_specific_options_by_default()
         {
@@ -287,12 +286,12 @@ native matcher, more or specific to your project or domain.
         static public function getMatchers()
         {
             return [
-                new InlineMatcher('haveKey', function($subject, $key) {
+                'haveKey' => function($subject, $key) {
                     return array_key_exists($key, $subject);
-                }),
-                new InlineMatcher('haveValue', function($subject, $value) {
+                },
+                'haveValue' => function($subject, $value) {
                     return in_array($value, $subject);
-                }),
+                },
             ];
         }
     }
