@@ -345,7 +345,7 @@ during the normal execution of a method. You can specify a mock expectation with
             $subscriber->onChange($event)->shouldBeCalled();
             
             // when
-            $this->addSubscriber($subcriber);
+            $this->addSubscriber($subscriber);
             $this->doWhatever($event);
         }
     }
