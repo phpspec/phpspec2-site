@@ -29,13 +29,12 @@ Create ``composer.json`` file in the project root:
     
     {
         "require-dev": {
-            "phpspec/phpspec": "*"
+            "phpspec/phpspec": "2.0.*@dev"
         },
         "config": {
             "bin-dir": "bin"
         },
-        "autoload": {"psr-0": {"": "src"}},
-        "minimum-stability": "dev"
+        "autoload": {"psr-0": {"": "src"}}
     }
 
 Then download ``composer.phar`` and run ``install`` command:
