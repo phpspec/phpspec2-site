@@ -371,7 +371,7 @@ Let and Let Go
     {
         function let($die)
         {
-            $die->beAMockOf('Die');
+            $die->beADoubleOf('Die');
             $this->beConstructedWith($die);
         }
         
