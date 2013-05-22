@@ -183,6 +183,7 @@ body > header, body > section, body > footer {
 }
 body > header {
   margin-top:20px;
+  padding:20px 60px 20px 60px;
 }
 body > header > nav {
   float: left;
@@ -456,6 +457,10 @@ strong {
 .main-menu li.active a {
   text-decoration:none !important;
   color:#000 !important;
+}
+
+.main-menu li.right {
+  float:right;
 }
 
 
