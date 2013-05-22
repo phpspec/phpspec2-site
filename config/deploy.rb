@@ -1,6 +1,6 @@
 set :application, "phpspec_site"
 set :repository,  "git@github.com:phpspec/phpspec2-site.git"
-set :deploy_to, "/home/deploy"
+set :deploy_to, "/var/www/www.phpspec.net"
 set :current, "#{deploy_to}/current"
 set :user, "deploy"
 set :pre_build_unused_files, ['_static', '_templates', 'conf.py', 'index.html',
