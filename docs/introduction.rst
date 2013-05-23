@@ -122,10 +122,11 @@ navigate to the spec folder and see the spec there:
     namespace spec;
 
     use PhpSpec\ObjectBehavior;
+    use Prophecy\Argument;
 
     class MarkdownSpec extends ObjectBehavior
     {
-        function it_should_be_initializable()
+        function it_is_initializable()
         {
             $this->shouldHaveType('Markdown');
         }
