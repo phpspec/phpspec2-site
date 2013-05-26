@@ -23,7 +23,7 @@ Method #1 (Composer)
 The simplest way to install phpspec with all its dependencies is through
 Composer:
 
-Create ``composer.json`` file in the project root:
+Create a ``composer.json`` file in the project root:
 
 .. code-block:: js
     
@@ -37,25 +37,25 @@ Create ``composer.json`` file in the project root:
         "autoload": {"psr-0": {"": "src"}}
     }
 
-Then download ``composer.phar`` and run ``install`` command:
+Then download the ``composer.phar`` and run the ``install`` command:
 
 .. code-block:: bash
 
     $ curl http://getcomposer.org/installer | php
     $ php composer.phar install
 
-Everything will be installed inside ``vendor`` folder and executable will
-be linked into ``bin`` folder.
+Everything will be installed inside the ``vendor`` folder and a phpspec executable will
+be linked into the ``bin`` folder.
 
 SpecBDD and TDD
 ---------------
 
-There isn't any real difference between SpecBDD and TDD. The value of using
-a xSpec tool instead a regular xUnit tool for TDD is language. The concepts
-and features of the tool will keep your focus on the "right" things. The focus
-on verification and structure as opposed to behaviour and design is, of
-course, a valid one. We happen to find that the latter is more valuable on the
-long run. It was also the intention of early users of TDD.
+There is no real difference between SpecBDD and TDD. The value of using
+an xSpec tool instead of a regular xUnit tool for TDD is **the language**.
+The concepts and features of the tool will keep your focus on the "right"
+things. The focus on verification and structure as opposed to behaviour and
+design is, of course, a valid one. We happen to find that the latter is more
+valuable in the long run. It was also the intention of early adopters of TDD.
 
 SpecBDD and StoryBDD
 --------------------
@@ -122,10 +122,11 @@ navigate to the spec folder and see the spec there:
     namespace spec;
 
     use PhpSpec\ObjectBehavior;
+    use Prophecy\Argument;
 
-    class Markdown extends ObjectBehavior
+    class MarkdownSpec extends ObjectBehavior
     {
-        function it_should_be_initializable()
+        function it_is_initializable()
         {
             $this->shouldHaveType('Markdown');
         }
@@ -177,7 +178,7 @@ Now we are ready to move on. Let's update that first example to express my next 
 
     use PhpSpec\ObjectBehavior;
 
-    class Markdown extends ObjectBehavior
+    class MarkdownSpec extends ObjectBehavior
     {
         function it_converts_plain_text_to_html_paragraphs()
         {
@@ -219,10 +220,9 @@ What we just did was moving fast through the ambar state into the red.
 .. code-block:: php
 
     <?php
-    
+
     class Markdown
     {
-    
         public function toHtml()
         {
             // TODO: implement
@@ -256,7 +256,6 @@ get it green.
 
     class Markdown
     {
-    
         public function toHtml()
         {
             return "<p>Hi, there</p>";
@@ -307,7 +306,7 @@ their behaviour so you can describe your object message exchange with them.
 
     use PhpSpec\ObjectBehavior;
 
-    class EndOfListFormatter extends ObjectBehavior
+    class EndOfListFormatterSpec extends ObjectBehavior
     {
         /**
          * @param Markdown\Stream $stream
@@ -337,7 +336,7 @@ during the normal execution of a method. You can specify a mock expectation with
 
     use PhpSpec\ObjectBehavior;
 
-    class MyObject extends ObjectBehavior
+    class MyObjectSpec extends ObjectBehavior
     {
         /**
          * @param SomeEvent $event
@@ -367,7 +366,7 @@ Let and Let Go
 
     use PhpSpec\ObjectBehavior;
 
-    class EverChangingWorld extends ObjectBehavior
+    class EverChangingWorldSpec extends ObjectBehavior
     {
         function let($die)
         {

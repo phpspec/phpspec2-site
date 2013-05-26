@@ -21,7 +21,7 @@ It compare the result using the identity operator: ``===``.
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_be_a_great_movie()
         {
@@ -54,7 +54,7 @@ type comparison.
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_be_a_great_movie()
         {
@@ -82,7 +82,7 @@ the matcher straight from ``$this``, which makes reading the example more natura
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_not_allow_negative_ratings()
         {
@@ -100,7 +100,7 @@ The code above could also be written as follows:
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_not_allow_negative_ratings()
         {
@@ -122,7 +122,7 @@ use the Throw matcher is by passing an exception object to shouldThrow:
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_not_allow_negative_ratings()
         {
@@ -144,7 +144,7 @@ Type matcher looks into the type of object being described.
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_be_a_movie()
         {
@@ -174,7 +174,7 @@ typically started with ``is*`` and ``has*``. Similar to what you'd see in
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_be_available_on_cinemas()
         {
@@ -223,7 +223,7 @@ interface.
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_have_one_director()
         {
@@ -247,7 +247,7 @@ e.g, ``is_bool``, ``is_integer``, ``is_decimal``, etc ..
 
     use PhpSpec\ObjectBehavior;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_have_a_string_as_title()
         {
@@ -275,7 +275,7 @@ native matcher, more or specific to your project or domain.
     use PhpSpec\ObjectBehavior;
     use PhpSpec\Matcher\InlineMatcher;
 
-    class Movie extends ObjectBehavior
+    class MovieSpec extends ObjectBehavior
     {
         function it_should_have_some_specific_options_by_default()
         {
