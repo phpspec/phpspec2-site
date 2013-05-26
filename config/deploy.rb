@@ -6,7 +6,7 @@ set :user, "deploy"
 set :pre_build_unused_files, ['_static', '_templates', 'conf.py', 'index.html',
   'index.txt', 'Makefile', 'README.md', 'docs', 'REVISION', '_build/public']
 set :post_build_unused_files, ['_build', '_sources', 'log', 'index.rst', 'tmp',
-  'public', 'objects.inv', 'docs']
+  'public', 'objects.inv']
 set :scm, :git
 
 ssh_options[:forward_agent] = true
