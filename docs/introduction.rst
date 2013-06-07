@@ -42,7 +42,7 @@ Then download the ``composer.phar`` and run the ``install`` command:
 .. code-block:: bash
 
     $ curl http://getcomposer.org/installer | php
-    $ php composer.phar install
+    $ php composer.phar install --dev
 
 Everything will be installed inside the ``vendor`` folder and a phpspec executable will
 be linked into the ``bin`` folder.
