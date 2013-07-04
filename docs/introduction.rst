@@ -3,7 +3,7 @@ Spec BDD with phpspec
 
 **phpspec** is a development tool, designed to help you achieve clean and
 working PHP code by using a technique derived from test-first development
-called (spec) behaviour driven developement, or SpecBDD.
+called (spec) behaviour driven development, or SpecBDD.
 
 The technique consists of describing the next object behaviour (spec) you are about
 to implement, using a tool like **phpspec**, then writing just enough code
