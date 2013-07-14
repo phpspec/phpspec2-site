@@ -215,7 +215,7 @@ spec again and... OK, you guessed:
     
              Do you want me to create it for you? [Y/n]
 
-What we just did was moving fast through the ambar state into the red.
+What we just did was moving fast through the amber state into the red.
 
 .. code-block:: php
 
