@@ -223,9 +223,9 @@ What we just did was moving fast through the amber state into the red.
 
     class Markdown
     {
-        public function toHtml()
+        public function toHtml($argument1)
         {
-            // TODO: implement
+            // TODO: write logic here
         }
     }
 
