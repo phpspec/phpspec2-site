@@ -305,13 +305,11 @@ their behaviour so you can describe your object message exchange with them.
     namespace spec\Markdown\Formatter;
 
     use PhpSpec\ObjectBehavior;
+    use Markdown\Stream;
 
     class EndOfListFormatterSpec extends ObjectBehavior
     {
-        /**
-         * @param Markdown\Stream $stream
-         */
-        function it_adds_a_end_of_list_to_markup($stream)
+        function it_adds_a_end_of_list_to_markup(Stream $stream)
         {
             $stream->getNextLine()->willReturn("");
             $this->format(" * Hi, there", $stream)->shouldReturn("</li></ul>");
@@ -319,7 +317,7 @@ their behaviour so you can describe your object message exchange with them.
     }
 
 To stub the behaviour of ``Markdown\Stream::getNextLine()`` we just need to
-pass it to the example, using widely used phpdoc notation, and configuring
+pass it to the example using a type hint, and configuring
 the stub is merely stating what it should return: ``->willReturn("")``.
 
 Mocks
@@ -338,12 +336,9 @@ during the normal execution of a method. You can specify a mock expectation with
 
     class MyObjectSpec extends ObjectBehavior
     {
-        /**
-         * @param SomeEvent $event
-         * @param SomeSubscriber $subscriber
-         */
-        function it_formats_the_string_as_a_header_if_underline_with_single_dashes($event, $subscriber)
-        {
+        function it_formats_the_string_as_a_header_if_underline_with_single_dashes(
+            SomeEvent $event, SomeSubscriber $subscriber
+        ) {
             $subscriber->onChange($event)->shouldBeCalled();
             
             // when
