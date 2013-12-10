@@ -391,3 +391,4 @@ Other useful resources for learning/using **phpspec**:
 
     ../cookbook/matchers
     ../cookbook/templates
+    ../cookbook/configuration
