@@ -293,7 +293,7 @@ Prophet Objects
 Stubs
 ~~~~~
 
-When you describing an object, you want your focus to be just there, in the
+When you're describing an object, you want your focus to be just there, in the
 object. You don't want to wander off to start describing collaborators. You
 can very easily tell **phpspec** that there will be collaborators and stub
 their behaviour so you can describe your object message exchange with them.
