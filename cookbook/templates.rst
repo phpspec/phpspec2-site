@@ -37,7 +37,7 @@ Furthermore, template are given some parameters that you can use as you wish.
    - ``%filepath%`` the file path of the class
    - ``%name%`` the class name
    - ``%namespace%`` the class namespace
-   - ``%namespace_block%`` the formated class namespace
+   - ``%namespace_block%`` the formatted class namespace
 
 **method**
    - ``%name%`` the method name
