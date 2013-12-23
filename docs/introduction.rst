@@ -390,3 +390,4 @@ Other useful resources for learning/using **phpspec**:
     :maxdepth: 1
 
     ../cookbook/matchers
+    ../cookbook/templates
