@@ -12,7 +12,7 @@ of your files).
 Resolution
 ----------
 
-It exists 3 different templates that PhpSpec will try to resolve:
+There are 3 different templates that PhpSpec will try to resolve:
   - specification
   - class
   - method
