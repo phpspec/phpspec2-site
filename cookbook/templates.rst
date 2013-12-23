@@ -42,3 +42,45 @@ Furthermore, template are given some parameters that you can use as you wish.
 **method**
    - ``%name%`` the method name
    - ``%arguments%`` the method arguments
+
+Example
+-------
+
+**Given** the following template placed in ``/home/user/.phpspec/class.tpl``:
+
+.. code-block:: text
+
+    <?php
+
+    /**
+     * This file is part of the acme library
+     *
+     * @author user <user@example.com>
+     */
+
+    namespace %namespace%;
+
+    class %name%
+    {
+    }
+
+**When** I ask PhpSpec to create the class corresponding to the ``spec/Acme/Model/FooSpec.php``` specification
+
+**Then** the following class is generated:
+
+
+.. code-block:: php
+
+    <?php
+
+    /**
+     * This file is part of the acme library
+     *
+     * @author user <user@example.com>
+     */
+
+    namespace Acme\Model;
+
+    class Foo
+    {
+    }
