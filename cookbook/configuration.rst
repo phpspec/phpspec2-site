@@ -1,26 +1,26 @@
 Configuration
 =============
 
-Some things in phpspec can be configured by a ``phpspec.yml`` or
+Some things in phpspec can be configured in a ``phpspec.yml`` or
 ``phpspec.yml.dist`` file in the root of your project (the directory where you
 run the ``phpspec`` command).
 
 Suites
 ------
 
-phpspec you can group a speficiation files for a certain namespace/path
-together. For each suite, you have a couple of configuration settings:
+In phpspec, you can group speficiation files by a certain namespace/path in a
+*suite*. For each suite, you have a couple of configuration settings:
 
-* ``namespace`` - The namespace for the classes. This is used for generating
+* ``namespace`` - The namespace of the classes. This is used for generating
   spec files, locating them and generating code;
 * ``spec_prefix`` [**default**: ``spec``] - The namespace prefix for
   specifications. The complete namespace for specifications is
   ``%spec_prefix%\%namespace%``;
-* ``src_path`` [**default**: ``src``] - The path where to store the generated
+* ``src_path`` [**default**: ``src``] - The path to store the generated
   classes. Paths are relative to the location of the config file. Directories
   will be created if they do not exists. This does not include the namespace
   directories;
-* ``spec_path`` [**default**: ``.``] - The path for the specifications. This
+* ``spec_path`` [**default**: ``.``] - The path of the specifications. This
   does not include the spec prefix or namespace.
 
 Some examples:
