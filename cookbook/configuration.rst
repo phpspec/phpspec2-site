@@ -8,7 +8,7 @@ run the ``phpspec`` command).
 Suites
 ------
 
-In phpspec, you can group speficiation files by a certain namespace/path in a
+In phpspec, you can group specification files by a certain namespace/path in a
 *suite*. For each suite, you have a couple of configuration settings:
 
 * ``namespace`` - The namespace of the classes. This is used for generating
