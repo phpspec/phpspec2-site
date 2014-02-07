@@ -15,7 +15,7 @@ Installation
 
 **phpspec** is a php 5.3 library that you'll have in your project
 development environment. Before you begin, ensure that you have at least
-PHP 5.3.1 installed.
+PHP 5.3.3 installed.
 
 Method #1 (Composer)
 ~~~~~~~~~~~~~~~~~~~~
