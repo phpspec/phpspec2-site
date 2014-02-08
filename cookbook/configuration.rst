@@ -56,7 +56,7 @@ formatter, use ``formatter.name``:
 Available formatters are:
 
 * progress (default)
-* html
+* html/h
 * pretty
 * junit
 * dot
