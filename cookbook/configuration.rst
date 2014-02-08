@@ -55,11 +55,11 @@ formatter, use ``formatter.name``:
 
 Available formatters are:
 
-* pretty
-* dot
-* nyan
-* html/h
 * progress (default)
+* html
+* pretty
+* junit
+* dot
 
 Extensions
 ----------
