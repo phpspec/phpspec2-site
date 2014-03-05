@@ -26,7 +26,7 @@ Composer:
 Create a ``composer.json`` file in the project root:
 
 .. code-block:: js
-    
+
     {
         "require-dev": {
             "phpspec/phpspec": "2.0.*@dev"
@@ -192,7 +192,7 @@ it!
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
+    $ bin/phpspec run
 
     > spec\Markdown
 
@@ -206,13 +206,13 @@ spec again and... OK, you guessed:
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
-    
+    $ bin/phpspec run
+
     > spec\Markdown
-    
+
       ✘ it converts plain text to html paragraphs
           Method Markdown::toHtml() not found.
-    
+
              Do you want me to create it for you? [Y/n]
 
 What we just did was moving fast through the amber state into the red.
@@ -234,14 +234,14 @@ classes and methods and went straight into a real failed spec:
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
-    
+    $ bin/phpspec run
+
     > spec\Markdown
-    
+
       ✘ it converts plain text to html paragraphs
           Expected "<p>Hi, there</p>", but got null.
-    
-    
+
+
     1 examples (1 failed)
     284ms
 
@@ -266,12 +266,12 @@ And voilà:
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
-    
+    $ bin/phpspec run
+
     > spec\Markdown
-    
+
       ✔ it converts plain text to html paragraphs
-    
+
     1 examples (1 passed)
     247ms
 
@@ -340,7 +340,7 @@ during the normal execution of a method. You can specify a mock expectation with
             SomeEvent $event, SomeSubscriber $subscriber
         ) {
             $subscriber->onChange($event)->shouldBeCalled();
-            
+
             // when
             $this->addSubscriber($subscriber);
             $this->doWhatever($event);
@@ -368,16 +368,48 @@ Let and Let Go
             $die->beADoubleOf('Die');
             $this->beConstructedWith($die);
         }
-        
+
         function it_live_and_let_die($die)
         {
             $this->liveAndLet()->shouldReturn($die);
         }
-        
+
         function letgo()
         {
             // release any resource
             // put the system back into the state it was before the example
+        }
+    }
+
+Skipping examples
+-----------------
+
+It may happen that some of your examples will depend on some environment requirements.
+For example, it might need a php extension or a minimal php version.
+In that case, you don't want your examples to fail because **phpspec** is unable to run them.
+
+**phpspec** allows to easily skip an example by throwing a `SkippingException` wherever you feel the
+need for it.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PhpSpec\ObjectBehavior;
+    use PhpSpec\Exception\Example\SkippingException;
+
+    class RocketSpec extends ObjectBehavior
+    {
+        function it_flies_around_the_moon()
+        {
+            if (!function_exists('rocket_launch')) {
+                throw new SkippingException(
+                    'The rocket extension is not installed'
+                );
+            }
+            $this->flyToTheMoon();
         }
     }
 
