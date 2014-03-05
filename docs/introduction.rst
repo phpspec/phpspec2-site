@@ -26,7 +26,7 @@ Composer:
 Create a ``composer.json`` file in the project root:
 
 .. code-block:: js
-    
+
     {
         "require-dev": {
             "phpspec/phpspec": "2.0.*@dev"
@@ -192,7 +192,7 @@ it!
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
+    $ bin/phpspec run
 
     > spec\Markdown
 
@@ -206,13 +206,13 @@ spec again and... OK, you guessed:
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
-    
+    $ bin/phpspec run
+
     > spec\Markdown
-    
+
       ✘ it converts plain text to html paragraphs
           Method Markdown::toHtml() not found.
-    
+
              Do you want me to create it for you? [Y/n]
 
 What we just did was moving fast through the amber state into the red.
@@ -234,14 +234,14 @@ classes and methods and went straight into a real failed spec:
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
-    
+    $ bin/phpspec run
+
     > spec\Markdown
-    
+
       ✘ it converts plain text to html paragraphs
           Expected "<p>Hi, there</p>", but got null.
-    
-    
+
+
     1 examples (1 failed)
     284ms
 
@@ -266,12 +266,12 @@ And voilà:
 
 .. code-block:: bash
 
-    $ bin/phpspec run 
-    
+    $ bin/phpspec run
+
     > spec\Markdown
-    
+
       ✔ it converts plain text to html paragraphs
-    
+
     1 examples (1 passed)
     247ms
 
@@ -340,7 +340,7 @@ during the normal execution of a method. You can specify a mock expectation with
             SomeEvent $event, SomeSubscriber $subscriber
         ) {
             $subscriber->onChange($event)->shouldBeCalled();
-            
+
             // when
             $this->addSubscriber($subscriber);
             $this->doWhatever($event);
@@ -368,12 +368,12 @@ Let and Let Go
             $die->beADoubleOf('Die');
             $this->beConstructedWith($die);
         }
-        
+
         function it_live_and_let_die($die)
         {
             $this->liveAndLet()->shouldReturn($die);
         }
-        
+
         function letgo()
         {
             // release any resource
