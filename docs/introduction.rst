@@ -381,6 +381,38 @@ Let and Let Go
         }
     }
 
+Skipping examples
+-----------------
+
+It may happen that some of your examples will depend on some environment requirements.
+For example, it might need a php extension or a minimal php version.
+In that case, you don't want your examples to fail because **phpspec** is unable to run them.
+
+**phpspec** allows to easily skip an example by throwing a `SkippingException` wherever you feel the
+need for it.
+
+.. code-block:: php
+
+    <?php
+
+    namespace spec;
+
+    use PhpSpec\ObjectBehavior;
+    use PhpSpec\Exception\Example\SkippingException;
+
+    class RocketSpec extends ObjectBehavior
+    {
+        function it_flies_around_the_moon()
+        {
+            if (!function_exists('rocket_launch')) {
+                throw new SkippingException(
+                    'The rocket extension is not installed'
+                );
+            }
+            $this->flyToTheMoon();
+        }
+    }
+
 Cookbook
 --------
 
