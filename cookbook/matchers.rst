@@ -10,7 +10,7 @@ one of them has aliases to make your examples more readable.
 Identity Matcher
 ----------------
 
-The Identity matcher is used to describe that method should return a specific value.
+The Identity matcher is used to describe that a method should return a specific value.
 It compares the result using the identity operator: ``===``.
 
 .. code-block:: php
