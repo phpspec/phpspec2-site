@@ -112,7 +112,7 @@ The first argument of ``during`` is a method name and the second one is
 an array of values passed to the method.
 
 You may want to specify the message of the exception. It's also possible to
-use the Throw matcher is passing an exception object to shouldThrow:
+use the Throw matcher by passing an exception object to shouldThrow:
 
 .. code-block:: php
 
