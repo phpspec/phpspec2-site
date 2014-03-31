@@ -29,7 +29,7 @@ Create a ``composer.json`` file in the project root:
     
     {
         "require-dev": {
-            "phpspec/phpspec": "2.0.*@dev"
+            "phpspec/phpspec": "~2.0"
         },
         "config": {
             "bin-dir": "bin"
