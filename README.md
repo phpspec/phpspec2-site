@@ -1,3 +1,5 @@
+> NOTE this repository is no longer used. Documentation is in the main phpspec repository.
+
 # phpspec-site
 
 phpspec.net source code
