@@ -42,6 +42,11 @@ the classes it tests. For instance, the above ``acme_suite`` will be used when
 running ``phpspec run Acme\TheLib``, ``phpspec run spec\Acme\TheLib`` or
 any classes in that namespace (e.g. ``phpspec run Acme\TheLib\Section\Foo``).
 
+This assumes you that the specs you are trying to run are in the same directory
+from where you started phpspec. For instance, if your Acme namespace is located
+in the ``src`` directory (``src/Acme``) you would run ``phpspec run src/Acme`` 
+to run all specs in the ``Acme`` namespace.
+
 Formatter
 ---------
 
