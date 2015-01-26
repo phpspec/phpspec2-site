@@ -28,4 +28,4 @@ Start writing specs:
 
     bin/phpspec desc Acme/Calculator
 
-Learn more from :doc:`the documentation <docs/introduction>`.
+Learn more from `the documentation <http://phpspec.readthedocs.org/>`_.
