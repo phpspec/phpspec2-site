@@ -3,15 +3,15 @@ Matchers
 
 Matchers are much like assertions in xUnit, except the fact that matchers
 concentrate on telling how the object should behave instead of verifying how it
-works. It just expresses better the focus on behaviour and fits better in the
-test-first cycle. There are 5 matchers in phpspec currently, but almost each
-one of them has aliases to make your examples read more fluid.
+works. It better expresses the focus on behaviour and as such fits the
+test-first approach. There are 5 matchers in phpspec currently, but almost each
+one of them has aliases to make your examples more readable.
 
 Identity Matcher
 ----------------
 
-Identity matcher is used to describe that method should return a specific value.
-It compare the result using the identity operator: ``===``.
+The Identity matcher is used to describe that a method should return a specific value.
+It compares the result using the identity operator: ``===``.
 
 .. code-block:: php
 
@@ -41,7 +41,7 @@ same in each case, except that readability of specs might differ.
 Comparison Matcher
 ------------------
 
-Use Comparison matcher to specify that a method should return a specific value
+The Comparison matcher is used to specify that a method should return a specific value
 but it's not as strict as the identity matcher. It's pretty much like comparing
 the result using the comparison operator ``==``, following PHP rules for loosely
 type comparison.
@@ -111,8 +111,8 @@ The code above could also be written as follows:
 The first argument of ``during`` is a method name and the second one is
 an array of values passed to the method.
 
-You may want to specify the message of the exception. Another possible way to
-use the Throw matcher is by passing an exception object to shouldThrow:
+You may want to specify the message of the exception. It's also possible to
+use the Throw matcher by passing an exception object to shouldThrow:
 
 .. code-block:: php
 
@@ -163,7 +163,7 @@ ObjectState Matcher
 -------------------
 
 ObjectState matcher is used to check some common state validation methods,
-typically started with ``is*`` and ``has*``. Similar to what you'd see in
+typically started with ``is*`` and ``has*``. Similar to what you'd see in an
 ``rspec`` predicate matcher.
 
 .. code-block:: php
@@ -194,7 +194,7 @@ provide ``isAvailableOnCinemas`` and ``hasSoundtrack`` methods:
 
     <?php
 
-    class Movie 
+    class Movie
     {
         public function isAvailableOnCinemas()
         {
@@ -212,7 +212,7 @@ Count Matcher
 -------------
 
 Use Count matcher to specify the number of items that should be returned by a method.
-This return could be either an array or an object that implements the ``\Countable``
+The return value could be either an array or an object that implements the ``\Countable``
 interface.
 
 .. code-block:: php
@@ -235,7 +235,7 @@ interface.
 Scalar Matcher
 --------------
 
-Use Scalar matcher to specify that value returned by a method should be of a
+Use the Scalar matcher to specify that value returned by a method should be of a
 specific primitive type. It's pretty much like using the ``is_*`` function family,
 e.g, ``is_bool``, ``is_integer``, ``is_decimal``, etc ..
 
@@ -263,8 +263,9 @@ e.g, ``is_bool``, ``is_integer``, ``is_decimal``, etc ..
 Inline Matcher
 --------------
 
-Inline matchers can be used to provide custom expectations not available in phpspec
-native matcher, more or specific to your project or domain.
+Inline matchers can be used to provide custom expectations not available in any
+of the native phpspec matchers. You can use this this to declare expectations
+more closely aligned to your project or domain.
 
 .. code-block:: php
 
